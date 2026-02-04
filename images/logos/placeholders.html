@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Placeholder Images</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+        .image-card { border: 1px solid #ddd; border-radius: 8px; padding: 15px; text-align: center; }
+        .image-card img { max-width: 100%; height: auto; border-radius: 4px; }
+        .btn { background: #2563eb; color: white; border: none; padding: 10px 20px; 
+               border-radius: 5px; cursor: pointer; margin: 10px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>ZewedJobs Placeholder Images Generator</h1>
+        <button class="btn" onclick="generateAllImages()">Generate All Placeholder Images</button>
+        <button class="btn" onclick="downloadAllImages()">Download All Images</button>
+        
+        <div class="grid" id="imageGrid">
+            <!-- Images will be generated here -->
+        </div>
+    </div>
+
+    <script>
+        const imageConfigs = {
+            logos: [
+                { name: 'zewedjobs-logo.png', size: '400x100', bg: '#2563eb', text: 'ZewedJobs' },
+                { name: 'logo-white.png', size: '400x100', bg: '#1e293b', text: 'ZewedJobs', color: 'white' },
+                { name: 'favicon-32x32.png', size: '32x32', bg: '#2563eb', text: 'ZJ' },
+                { name: 'icon-192x192.png', size: '192x192', bg: '#2563eb', text: 'ZJ' },
+                { name: 'icon-512x512.png', size: '512x512', bg: '#2563eb', text: 'ZJ' }
+            ],
+            partners: [
+                { name: 'techcorp-logo.png', size: '200x100', bg: '#3b82f6', text: 'TechCorp' },
+                { name: 'designstudio-logo.png', size: '200x100', bg: '#8b5cf6', text: 'DesignStudio' },
+                { name: 'datalytics-logo.png', size: '200x100', bg: '#10b981', text: 'Datalytics' },
+                { name: 'globalbank-logo.png', size: '200x100', bg: '#f59e0b', text: 'GlobalBank' },
+                { name: 'innovate-logo.png', size: '200x100', bg: '#ef4444', text: 'Innovate Inc' }
+            ],
+            banners: [
+                { name: 'hero-banner.jpg', size: '2000x800', bg: 'linear-gradient(135deg,#667eea,#764ba2)', text: 'Find Your Dream Job' },
+                { name: 'job-search-banner.jpg', size: '1200x400', bg: 'linear-gradient(135deg,#3b82f6,#1d4ed8)', text: 'Browse Thousands of Jobs' },
+                { name: 'employer-banner.jpg', size: '1200x400', bg: 'linear-gradient(135deg,#8b5cf6,#7c3aed)', text: 'Hire Top Talent' },
+                { name: 'course-banner.jpg', size: '1200x400', bg: 'linear-gradient(135deg,#10b981,#047857)', text: 'Advance Your Career' },
+                { name: 'ad-banner-728x90.png', size: '728x90', bg: '#1e293b', text: 'Ad Space 728x90' },
+                { name: 'ad-banner-300x250.png', size: '300x250', bg: '#1e293b', text: 'Ad Space 300x250' }
+            ],
+            certificates: [
+                { name: 'certificate-template-1.png', size: '1200x800', bg: '#f8fafc', text: 'Certificate of Completion', border: '#2563eb' },
+                { name: 'certificate-template-2.png', size: '1200x800', bg: '#fef3c7', text: 'Certificate Template', border: '#d97706' },
+                { name: 'certificate-seal.png', size: '300x300', bg: '#dc2626', text: 'Official Seal', color: 'white' }
+            ],
+            courses: [
+                { name: 'web-development-course.jpg', size: '400x300', bg: '#3b82f6', text: 'Web Development' },
+                { name: 'digital-marketing-course.jpg', size: '400x300', bg: '#8b5cf6', text: 'Digital Marketing' },
+                { name: 'data-science-course.jpg', size: '400x300', bg: '#10b981', text: 'Data Science' },
+                { name: 'ui-ux-course.jpg', size: '400x300', bg: '#f59e0b', text: 'UI/UX Design' }
+            ],
+            events: [
+                { name: 'career-fair-2024.jpg', size: '800x400', bg: '#2563eb', text: 'Career Fair 2024' },
+                { name: 'tech-conference.jpg', size: '800x400', bg: '#7c3aed', text: 'Tech Conference' },
+                { name: 'webinar-remote-work.jpg', size: '800x400', bg: '#10b981', text: 'Remote Work Webinar' }
+            ]
+        };
+
+        function generateImage(config, category) {
+            const [width, height] = config.size.split('x').map(Number);
+            const canvas = document.createElement('canvas');
+            canvas.width = width;
+            canvas.height = height;
+            const ctx = canvas.getContext('2d');
+            
+            // Draw background
+            if (config.bg.includes('gradient')) {
+                const gradient = ctx.createLinearGradient(0, 0, width, height);
+                const colors = config.bg.match(/#[a-fA-F0-9]{6}/g);
+                if (colors) {
+                    gradient.addColorStop(0, colors[0]);
+                    gradient.addColorStop(1, colors[1] || colors[0]);
+                    ctx.fillStyle = gradient;
+                }
+            } else {
+                ctx.fillStyle = config.bg;
+            }
+            ctx.fillRect(0, 0, width, height);
+            
+            // Draw border if specified
+            if (config.border) {
+                ctx.strokeStyle = config.border;
+                ctx.lineWidth = 10;
+                ctx.strokeRect(5, 5, width - 10, height - 10);
+            }
+            
+            // Draw text
+            ctx.fillStyle = config.color || '#ffffff';
+            ctx.font = `bold ${Math.min(width, height) / 10}px Arial`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(config.text, width / 2, height / 2);
+            
+            // Add category label
+            ctx.font = '16px Arial';
+            ctx.fillText(`${category}/${config.name}`, width / 2, height - 30);
+            
+            return canvas.toDataURL('image/png');
+        }
+
+        function generateAllImages() {
+            const grid = document.getElementById('imageGrid');
+            grid.innerHTML = '';
+            
+            Object.entries(imageConfigs).forEach(([category, configs]) => {
+                configs.forEach(config => {
+                    const imageUrl = generateImage(config, category);
+                    
+                    const card = document.createElement('div');
+                    card.className = 'image-card';
+                    card.innerHTML = `
+                        <h3>${category}/${config.name}</h3>
+                        <p>Size: ${config.size}</p>
+                        <img src="${imageUrl}" alt="${config.name}">
+                        <br>
+                        <button onclick="downloadImage('${imageUrl}', '${config.name}')">
+                            Download
+                        </button>
+                    `;
+                    grid.appendChild(card);
+                    
+                    // Store for batch download
+                    config.dataUrl = imageUrl;
+                });
+            });
+        }
+
+        function downloadImage(dataUrl, filename) {
+            const link = document.createElement('a');
+            link.href = dataUrl;
+            link.download = filename;
+            link.click();
+        }
+
+        function downloadAllImages() {
+            Object.entries(imageConfigs).forEach(([category, configs]) => {
+                configs.forEach(config => {
+                    if (config.dataUrl) {
+                        const link = document.createElement('a');
+                        link.href = config.dataUrl;
+                        link.download = config.name;
+                        link.style.display = 'none';
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                    }
+                });
+            });
+        }
+
+        // Auto-generate on page load
+        window.onload = generateAllImages;
+    </script>
+</body>
+</html>
