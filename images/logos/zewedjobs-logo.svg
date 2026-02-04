@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="60" viewBox="0 0 200 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#2563eb;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:1" />
+        </linearGradient>
+    </defs>
+    
+    <!-- Background shape -->
+    <path d="M10 10H190V50H10C6.68629 50 4 47.3137 4 44V16C4 12.6863 6.68629 10 10 10Z" 
+          fill="url(#gradient)" rx="8"/>
+    
+    <!-- Briefcase icon -->
+    <path d="M40 25C40 22.2386 42.2386 20 45 20H55C57.7614 20 60 22.2386 60 25V30H40V25Z" 
+          fill="white"/>
+    <rect x="30" y="30" width="40" height="15" rx="3" fill="white" opacity="0.9"/>
+    <path d="M30 30H70V33C70 34.1046 69.1046 35 68 35H32C30.8954 35 30 34.1046 30 33V30Z" 
+          fill="white" opacity="0.8"/>
+    
+    <!-- Z letter -->
+    <path d="M90 25H110L90 45H110" stroke="white" stroke-width="3" stroke-linecap="round"/>
+    
+    <!-- W letter -->
+    <path d="M125 25V45M125 45L135 35M125 45L140 25M140 25V45" stroke="white" stroke-width="3" stroke-linecap="round"/>
+    
+    <!-- Job text -->
+    <text x="160" y="38" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="white">
+        Jobs
+    </text>
+    
+    <!-- Tagline -->
+    <text x="100" y="55" font-family="Arial, sans-serif" font-size="10" fill="white" opacity="0.8" text-anchor="middle">
+        Find Your Dream Job
+    </text>
+</svg>
