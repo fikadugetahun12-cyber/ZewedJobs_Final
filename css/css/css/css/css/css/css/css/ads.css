@@ -1,0 +1,831 @@
+/* Advertisement System */
+.ads-section {
+    margin: var(--space-8) 0;
+}
+
+.ads-container {
+    max-width: var(--container-xl);
+    margin: 0 auto;
+    padding: 0 var(--space-4);
+}
+
+/* Banner Ads */
+.banner-ad {
+    background-color: var(--white);
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--gray-200);
+    box-shadow: var(--shadow);
+    margin-bottom: var(--space-6);
+    position: relative;
+}
+
+.banner-ad-label {
+    position: absolute;
+    top: var(--space-4);
+    right: var(--space-4);
+    background-color: rgba(0, 0, 0, 0.7);
+    color: var(--white);
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-xs);
+    font-weight: 500;
+    z-index: 2;
+}
+
+/* Hero Banner */
+.hero-banner {
+    position: relative;
+    height: 400px;
+    border-radius: var(--radius);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-banner-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: var(--white);
+    padding: var(--space-8);
+    max-width: 800px;
+}
+
+.hero-banner h2 {
+    font-size: var(--font-size-4xl);
+    margin-bottom: var(--space-4);
+    color: var(--white);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.hero-banner p {
+    font-size: var(--font-size-xl);
+    margin-bottom: var(--space-6);
+    opacity: 0.9;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.hero-banner-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: transform var(--transition-slow);
+}
+
+.hero-banner:hover .hero-banner-background {
+    transform: scale(1.05);
+}
+
+.hero-banner-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3));
+    z-index: 1;
+}
+
+/* Standard Banners */
+.standard-banner {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+    padding: var(--space-6);
+}
+
+.banner-image {
+    flex: 0 0 200px;
+    height: 150px;
+    border-radius: var(--radius);
+    overflow: hidden;
+}
+
+.banner-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition);
+}
+
+.banner-image:hover img {
+    transform: scale(1.05);
+}
+
+.banner-content {
+    flex: 1;
+}
+
+.banner-content h3 {
+    font-size: var(--font-size-xl);
+    margin-bottom: var(--space-2);
+    color: var(--gray-900);
+}
+
+.banner-content p {
+    color: var(--gray-600);
+    margin-bottom: var(--space-4);
+}
+
+.banner-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    color: var(--gray-500);
+    font-size: var(--font-size-sm);
+}
+
+.banner-meta span {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+/* Sidebar Ads */
+.sidebar-ads {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+}
+
+.sidebar-ad {
+    background-color: var(--white);
+    border-radius: var(--radius);
+    border: 1px solid var(--gray-200);
+    overflow: hidden;
+    transition: all var(--transition);
+    box-shadow: var(--shadow-sm);
+}
+
+.sidebar-ad:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+    border-color: var(--primary-300);
+}
+
+.sidebar-ad-compact {
+    padding: var(--space-4);
+    text-align: center;
+}
+
+.sidebar-ad-compact .ad-image {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto var(--space-4);
+    border-radius: var(--radius);
+    overflow: hidden;
+}
+
+.sidebar-ad-compact h4 {
+    font-size: var(--font-size-base);
+    margin-bottom: var(--space-2);
+    color: var(--gray-900);
+}
+
+.sidebar-ad-compact p {
+    color: var(--gray-600);
+    font-size: var(--font-size-sm);
+    margin-bottom: var(--space-4);
+}
+
+.sidebar-ad-expanded .ad-image {
+    height: 120px;
+    overflow: hidden;
+}
+
+.sidebar-ad-expanded .ad-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition);
+}
+
+.sidebar-ad-expanded:hover .ad-image img {
+    transform: scale(1.05);
+}
+
+.sidebar-ad-expanded .ad-content {
+    padding: var(--space-4);
+}
+
+.sidebar-ad-expanded h4 {
+    font-size: var(--font-size-base);
+    margin-bottom: var(--space-2);
+    color: var(--gray-900);
+}
+
+.sidebar-ad-expanded p {
+    color: var(--gray-600);
+    font-size: var(--font-size-sm);
+    margin-bottom: var(--space-4);
+}
+
+/* Text Ads */
+.text-ad {
+    background-color: var(--primary-50);
+    border: 1px solid var(--primary-200);
+    border-radius: var(--radius);
+    padding: var(--space-4);
+    margin-bottom: var(--space-4);
+    transition: all var(--transition);
+}
+
+.text-ad:hover {
+    background-color: var(--primary-100);
+    border-color: var(--primary-300);
+    transform: translateX(4px);
+}
+
+.text-ad-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--space-2);
+}
+
+.text-ad-title {
+    font-weight: 600;
+    color: var(--primary-700);
+    font-size: var(--font-size-sm);
+}
+
+.text-ad-badge {
+    background-color: var(--primary-600);
+    color: var(--white);
+    padding: 2px 8px;
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+}
+
+.text-ad-content {
+    color: var(--gray-700);
+    font-size: var(--font-size-sm);
+    margin-bottom: var(--space-3);
+}
+
+.text-ad-link {
+    color: var(--primary-600);
+    font-weight: 600;
+    font-size: var(--font-size-sm);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.text-ad-link:hover {
+    color: var(--primary-700);
+}
+
+/* Product Ads */
+.product-ad {
+    background: linear-gradient(135deg, var(--white) 0%, var(--gray-50) 100%);
+    border-radius: var(--radius);
+    border: 1px solid var(--gray-200);
+    overflow: hidden;
+    position: relative;
+}
+
+.product-ad-ribbon {
+    position: absolute;
+    top: var(--space-4);
+    right: var(--space-4);
+    background-color: var(--danger-500);
+    color: var(--white);
+    padding: var(--space-2) var(--space-4);
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    border-radius: var(--radius-sm);
+    z-index: 2;
+}
+
+.product-ad-image {
+    height: 180px;
+    overflow: hidden;
+    position: relative;
+}
+
+.product-ad-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-slow);
+}
+
+.product-ad:hover .product-ad-image img {
+    transform: scale(1.1);
+}
+
+.product-ad-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 0.5));
+}
+
+.product-ad-content {
+    padding: var(--space-6);
+}
+
+.product-ad-rating {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-bottom: var(--space-3);
+}
+
+.rating-stars {
+    color: var(--warning-500);
+    font-size: var(--font-size-sm);
+}
+
+.rating-count {
+    color: var(--gray-500);
+    font-size: var(--font-size-xs);
+}
+
+.product-ad-title {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--space-2);
+    color: var(--gray-900);
+}
+
+.product-ad-price {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-4);
+}
+
+.current-price {
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    color: var(--gray-900);
+}
+
+.original-price {
+    font-size: var(--font-size-base);
+    color: var(--gray-500);
+    text-decoration: line-through;
+}
+
+.discount-badge {
+    background-color: var(--success-500);
+    color: var(--white);
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+}
+
+/* Promotional Banners */
+.promo-banner {
+    background: linear-gradient(135deg, var(--primary-600) 0%, var(--primary-800) 100%);
+    border-radius: var(--radius);
+    padding: var(--space-8);
+    color: var(--white);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.promo-banner::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+}
+
+.promo-banner-content {
+    position: relative;
+    z-index: 2;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.promo-banner h3 {
+    font-size: var(--font-size-3xl);
+    margin-bottom: var(--space-4);
+    color: var(--white);
+}
+
+.promo-banner p {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--space-6);
+    opacity: 0.9;
+}
+
+.promo-banner .btn {
+    background-color: var(--white);
+    color: var(--primary-600);
+    border-color: var(--white);
+}
+
+.promo-banner .btn:hover {
+    background-color: var(--gray-100);
+    color: var(--primary-700);
+}
+
+/* Countdown Banner */
+.countdown-banner {
+    background-color: var(--gray-900);
+    color: var(--white);
+    border-radius: var(--radius);
+    padding: var(--space-8);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.countdown-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%236366f1" fill-opacity="0.2" d="M0,96L48,112C96,128,192,160,288,186.7C384,213,480,235,576,213.3C672,192,768,128,864,122.7C960,117,1056,171,1152,197.3C1248,224,1344,224,1392,224L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+    background-size: cover;
+    background-position: bottom;
+    opacity: 0.3;
+}
+
+.countdown-banner-content {
+    position: relative;
+    z-index: 2;
+}
+
+.countdown-banner h3 {
+    font-size: var(--font-size-3xl);
+    margin-bottom: var(--space-4);
+    color: var(--white);
+}
+
+.countdown-banner p {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--space-6);
+    opacity: 0.9;
+}
+
+.countdown-timer {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-4);
+    margin-bottom: var(--space-6);
+}
+
+.countdown-unit {
+    text-align: center;
+    min-width: 80px;
+}
+
+.countdown-value {
+    display: block;
+    font-size: var(--font-size-3xl);
+    font-weight: 700;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: var(--space-4);
+    border-radius: var(--radius);
+    margin-bottom: var(--space-2);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.countdown-label {
+    font-size: var(--font-size-sm);
+    opacity: 0.8;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Interactive Ads */
+.interactive-ad {
+    background-color: var(--white);
+    border-radius: var(--radius);
+    border: 1px solid var(--gray-200);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: all var(--transition);
+}
+
+.interactive-ad:hover {
+    box-shadow: var(--shadow-lg);
+    border-color: var(--primary-300);
+}
+
+.interactive-ad-header {
+    padding: var(--space-4);
+    background-color: var(--primary-50);
+    border-bottom: 1px solid var(--primary-100);
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+}
+
+.interactive-ad-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius);
+    background-color: var(--primary-600);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-size-lg);
+}
+
+.interactive-ad-content {
+    padding: var(--space-6);
+}
+
+.interactive-ad-title {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--space-3);
+    color: var(--gray-900);
+}
+
+.interactive-ad-form {
+    margin-bottom: var(--space-4);
+}
+
+.interactive-ad-form .form-group {
+    margin-bottom: var(--space-3);
+}
+
+.interactive-ad-footer {
+    padding: var(--space-4);
+    background-color: var(--gray-50);
+    border-top: 1px solid var(--gray-200);
+    text-align: center;
+    font-size: var(--font-size-xs);
+    color: var(--gray-600);
+}
+
+/* Ad Management */
+.ad-management {
+    background-color: var(--white);
+    border-radius: var(--radius);
+    border: 1px solid var(--gray-200);
+    padding: var(--space-8);
+    box-shadow: var(--shadow);
+}
+
+.ad-campaigns {
+    margin-bottom: var(--space-8);
+}
+
+.campaign-card {
+    background-color: var(--gray-50);
+    border-radius: var(--radius);
+    padding: var(--space-6);
+    margin-bottom: var(--space-4);
+    border: 1px solid var(--gray-200);
+    transition: all var(--transition);
+}
+
+.campaign-card:hover {
+    border-color: var(--primary-300);
+    background-color: var(--white);
+    box-shadow: var(--shadow);
+}
+
+.campaign-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--space-4);
+}
+
+.campaign-info h4 {
+    margin: 0 0 var(--space-2) 0;
+    font-size: var(--font-size-lg);
+    color: var(--gray-900);
+}
+
+.campaign-status {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+}
+
+.campaign-active { background-color: var(--success-50); color: var(--success-700); }
+.campaign-paused { background-color: var(--warning-50); color: var(--warning-700); }
+.campaign-ended { background-color: var(--gray-100); color: var(--gray-700); }
+
+.campaign-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-4);
+    margin-bottom: var(--space-4);
+}
+
+.campaign-stat {
+    text-align: center;
+    padding: var(--space-3);
+    background-color: var(--white);
+    border-radius: var(--radius);
+    border: 1px solid var(--gray-200);
+}
+
+.campaign-stat-value {
+    display: block;
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: var(--space-1);
+}
+
+.campaign-stat-label {
+    display: block;
+    color: var(--gray-600);
+    font-size: var(--font-size-xs);
+}
+
+.campaign-actions {
+    display: flex;
+    gap: var(--space-3);
+    justify-content: flex-end;
+}
+
+/* Ad Placement Grid */
+.ad-placement-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--space-6);
+}
+
+.placement-card {
+    background-color: var(--white);
+    border-radius: var(--radius);
+    border: 1px solid var(--gray-200);
+    padding: var(--space-6);
+    transition: all var(--transition);
+}
+
+.placement-card:hover {
+    border-color: var(--primary-300);
+    box-shadow: var(--shadow);
+    transform: translateY(-2px);
+}
+
+.placement-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--space-4);
+}
+
+.placement-info h4 {
+    margin: 0 0 var(--space-2) 0;
+    font-size: var(--font-size-lg);
+    color: var(--gray-900);
+}
+
+.placement-price {
+    font-size: var(--font-size-2xl);
+    font-weight: 700;
+    color: var(--primary-600);
+}
+
+.placement-dimensions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    color: var(--gray-600);
+    font-size: var(--font-size-sm);
+    margin-bottom: var(--space-4);
+}
+
+.placement-features {
+    margin-bottom: var(--space-4);
+}
+
+.placement-feature {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-bottom: var(--space-2);
+    color: var(--gray-700);
+    font-size: var(--font-size-sm);
+}
+
+.placement-feature i {
+    color: var(--success-500);
+    width: 16px;
+}
+
+.placement-booked {
+    color: var(--gray-500);
+    font-size: var(--font-size-sm);
+    margin-bottom: var(--space-4);
+}
+
+/* Responsive Ads Styles */
+@media (max-width: 1024px) {
+    .hero-banner {
+        height: 300px;
+    }
+    
+    .hero-banner h2 {
+        font-size: var(--font-size-3xl);
+    }
+    
+    .hero-banner p {
+        font-size: var(--font-size-lg);
+    }
+    
+    .campaign-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .ad-placement-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .standard-banner {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .banner-image {
+        flex: 0 0 auto;
+        width: 100%;
+        height: 200px;
+    }
+    
+    .countdown-timer {
+        gap: var(--space-2);
+    }
+    
+    .countdown-unit {
+        min-width: 60px;
+    }
+    
+    .countdown-value {
+        font-size: var(--font-size-2xl);
+        padding: var(--space-3);
+    }
+    
+    .campaign-header {
+        flex-direction: column;
+        gap: var(--space-4);
+        align-items: stretch;
+    }
+    
+    .ad-placement-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .hero-banner {
+        height: 200px;
+    }
+    
+    .hero-banner h2 {
+        font-size: var(--font-size-2xl);
+    }
+    
+    .hero-banner p {
+        font-size: var(--font-size-base);
+    }
+    
+    .countdown-timer {
+        gap: var(--space-1);
+    }
+    
+    .countdown-unit {
+        min-width: 50px;
+    }
+    
+    .countdown-value {
+        font-size: var(--font-size-xl);
+        padding: var(--space-2);
+    }
+    
+    .campaign-stats {
+        grid-template-columns: 1fr;
+    }
+    
+    .campaign-actions {
+        flex-direction: column;
+    }
+}
