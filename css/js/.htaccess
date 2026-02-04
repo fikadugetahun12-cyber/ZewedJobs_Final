@@ -1,0 +1,133 @@
+# ZewedJobs .htaccess Configuration
+# Apache Server Configuration
+
+# Enable Rewrite Engine
+RewriteEngine On
+
+# Force HTTPS
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Remove trailing slashes
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)/$ /$1 [L,R=301]
+
+# Custom Error Pages
+ErrorDocument 404 /404.html
+ErrorDocument 500 /500.html
+ErrorDocument 403 /403.html
+
+# Security Headers
+<IfModule mod_headers.c>
+    # XSS Protection
+    Header set X-XSS-Protection "1; mode=block"
+    
+    # Prevent MIME-type sniffing
+    Header set X-Content-Type-Options "nosniff"
+    
+    # Frame protection
+    Header set X-Frame-Options "SAMEORIGIN"
+    
+    # HSTS (HTTPS Strict Transport Security)
+    Header set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+    
+    # Content Security Policy
+    Header set Content-Security-Policy "default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/; font-src 'self' https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/; img-src 'self' data: https:;"
+    
+    # Referrer Policy
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+    
+    # Permissions Policy
+    Header set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+</IfModule>
+
+# Cache Control
+<IfModule mod_expires.c>
+    ExpiresActive On
+    
+    # Images
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType image/x-icon "access plus 1 year"
+    
+    # CSS, JavaScript
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType text/javascript "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    
+    # Fonts
+    ExpiresByType font/ttf "access plus 1 year"
+    ExpiresByType font/otf "access plus 1 year"
+    ExpiresByType font/woff "access plus 1 year"
+    ExpiresByType font/woff2 "access plus 1 year"
+    
+    # HTML
+    ExpiresByType text/html "access plus 1 hour"
+    
+    # XML
+    ExpiresByType application/xml "access plus 1 hour"
+</IfModule>
+
+# Gzip Compression
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE text/javascript
+    AddOutputFilterByType DEFLATE text/xml
+    AddOutputFilterByType DEFLATE text/plain
+    AddOutputFilterByType DEFLATE image/svg+xml
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/x-javascript
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE application/xhtml+xml
+    AddOutputFilterByType DEFLATE application/rss+xml
+    AddOutputFilterByType DEFLATE application/json
+    AddOutputFilterByType DEFLATE application/vnd.ms-fontobject
+    AddOutputFilterByType DEFLATE font/ttf
+    AddOutputFilterByType DEFLATE font/otf
+    AddOutputFilterByType DEFLATE font/woff
+    AddOutputFilterByType DEFLATE font/woff2
+</IfModule>
+
+# Prevent access to sensitive files
+<FilesMatch "^\.">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+<FilesMatch "\.(sql|log|ini|conf|bak|swp|tmp)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Allow access to specific files
+<Files "^(index\.html|manifest\.json|robots\.txt|sitemap\.xml)$">
+    Order allow,deny
+    Allow from all
+</Files>
+
+# URL Rewriting for Single Page Application
+# If the requested file/folder doesn't exist, redirect to index.html
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.html [L]
+
+# Prevent directory listing
+Options -Indexes
+
+# Set default charset
+AddDefaultCharset UTF-8
+
+# File upload limits (if applicable)
+php_value upload_max_filesize 10M
+php_value post_max_size 10M
+
+# Custom 404 redirect
+RewriteCond %{REQUEST_URI} !^/404\.html$
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /404.html [L]
