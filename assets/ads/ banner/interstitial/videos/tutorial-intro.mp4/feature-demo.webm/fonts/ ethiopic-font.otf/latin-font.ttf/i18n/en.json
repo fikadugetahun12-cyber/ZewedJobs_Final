@@ -4,10 +4,27 @@
     "login": "Sign In",
     "logout": "Sign Out",
     "search": "Search",
-    "loading": "Loading..."
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "loading": "Loading...",
+    "error": "An error occurred"
   },
-  "home": {
-    "title": "Home Page",
-    "description": "Welcome to our application"
+  "navigation": {
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact",
+    "settings": "Settings"
+  },
+  "auth": {
+    "email": "Email",
+    "password": "Password",
+    "forgot_password": "Forgot Password?",
+    "signup": "Sign Up"
+  },
+  "errors": {
+    "required": "This field is required",
+    "invalid_email": "Invalid email address",
+    "password_length": "Password must be at least 8 characters"
   }
 }
