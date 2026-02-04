@@ -1,0 +1,13 @@
+{
+  "common": {
+    "welcome": "እንኳን ደህና መጡ",
+    "login": "ግባ",
+    "logout": "ውጣ",
+    "search": "ፈልግ",
+    "loading": "በመጫን ላይ..."
+  },
+  "home": {
+    "title": "ዋና ገጽ",
+    "description": "ወደ መተግበሪያችን እንኳን በደህና መጡ"
+  }
+}
