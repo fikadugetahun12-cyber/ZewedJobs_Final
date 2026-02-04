@@ -1,0 +1,23 @@
+# ZewedJobs Robots.txt
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://www.zewedjobs.com/sitemap.xml
+
+# Disallow admin and private pages
+Disallow: /admin/
+Disallow: /private/
+Disallow: /dashboard/
+Disallow: /api/
+Disallow: /*.json$
+Disallow: /*.xml$
+
+# Allow crawlers for public pages
+Allow: /jobs/
+Allow: /companies/
+Allow: /categories/
+Allow: /search/
+
+# Crawl delay (requests per second)
+Crawl-delay: 1
