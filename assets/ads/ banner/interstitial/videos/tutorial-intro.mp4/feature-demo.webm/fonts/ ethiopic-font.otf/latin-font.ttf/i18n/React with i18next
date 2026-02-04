@@ -1,0 +1,12 @@
+import i18n from 'i18next';
+import amTranslation from './assets/i18n/am.json';
+import enTranslation from './assets/i18n/en.json';
+
+i18n.init({
+  resources: {
+    am: { translation: amTranslation },
+    en: { translation: enTranslation }
+  },
+  lng: getUserLanguage(), // Function to detect user language
+  fallbackLng: 'en'
+});
