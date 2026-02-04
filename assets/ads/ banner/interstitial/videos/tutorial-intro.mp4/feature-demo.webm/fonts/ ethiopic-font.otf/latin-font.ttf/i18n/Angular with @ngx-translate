@@ -1,0 +1,14 @@
+import { TranslateModule } from '@ngx-translate/core';
+
+@NgModule({
+  imports: [
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (http: HttpClient) => {
+          return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+        }
+      }
+    })
+  ]
+})
