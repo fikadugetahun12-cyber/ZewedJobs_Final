@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ZewedJobs - Find your dream job today">
+    <title>ZewedJobs - Job Board Platform</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <a href="/"><i class="fas fa-briefcase"></i> Zewed<span>Jobs</span></a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#jobs">Browse Jobs</a></li>
+                <li><a href="#employers">For Employers</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#login" class="btn-login">Login</a></li>
+                <li><a href="#signup" class="btn-signup">Sign Up</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Find Your <span>Dream Job</span> Today</h1>
+                <p>Connecting talented professionals with top companies worldwide</p>
+                
+                <!-- Search Form -->
+                <div class="search-container">
+                    <form class="search-form">
+                        <div class="search-group">
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="Job title, keywords, or company" class="search-input">
+                        </div>
+                        <div class="search-group">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <input type="text" placeholder="City, state, or remote" class="search-input">
+                        </div>
+                        <button type="submit" class="btn-search">Search Jobs</button>
+                    </form>
+                </div>
+                
+                <div class="quick-links">
+                    <span>Popular: </span>
+                    <a href="#">Software Engineer</a>
+                    <a href="#">Marketing Manager</a>
+                    <a href="#">Remote Jobs</a>
+                    <a href="#">Full-time</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Jobs -->
+    <section class="featured-jobs" id="jobs">
+        <div class="container">
+            <div class="section-header">
+                <h2>Featured Jobs</h2>
+                <a href="#" class="view-all">View All Jobs <i class="fas fa-arrow-right"></i></a>
+            </div>
+            
+            <div class="jobs-grid">
+                <!-- Job Card 1 -->
+                <div class="job-card">
+                    <div class="job-header">
+                        <div class="company-logo">
+                            <img src="https://via.placeholder.com/50" alt="Company Logo">
+                        </div>
+                        <div class="job-info">
+                            <h3>Senior Frontend Developer</h3>
+                            <p class="company-name">TechCorp Inc.</p>
+                            <div class="job-tags">
+                                <span class="tag remote">Remote</span>
+                                <span class="tag full-time">Full-time</span>
+                            </div>
+                        </div>
+                        <i class="far fa-heart favorite"></i>
+                    </div>
+                    <div class="job-details">
+                        <p><i class="fas fa-map-marker-alt"></i> San Francisco, CA</p>
+                        <p><i class="fas fa-money-bill-wave"></i> $120,000 - $150,000</p>
+                        <p><i class="far fa-clock"></i> Posted 2 days ago</p>
+                    </div>
+                    <button class="btn-apply">Apply Now</button>
+                </div>
+
+                <!-- Job Card 2 -->
+                <div class="job-card">
+                    <div class="job-header">
+                        <div class="company-logo">
+                            <img src="https://via.placeholder.com/50" alt="Company Logo">
+                        </div>
+                        <div class="job-info">
+                            <h3>UX/UI Designer</h3>
+                            <p class="company-name">DesignStudio LLC</p>
+                            <div class="job-tags">
+                                <span class="tag remote">Remote</span>
+                                <span class="tag contract">Contract</span>
+                            </div>
+                        </div>
+                        <i class="fas fa-heart favorite active"></i>
+                    </div>
+                    <div class="job-details">
+                        <p><i class="fas fa-map-marker-alt"></i> New York, NY</p>
+                        <p><i class="fas fa-money-bill-wave"></i> $80,000 - $100,000</p>
+                        <p><i class="far fa-clock"></i> Posted 5 days ago</p>
+                    </div>
+                    <button class="btn-apply">Apply Now</button>
+                </div>
+
+                <!-- Job Card 3 -->
+                <div class="job-card">
+                    <div class="job-header">
+                        <div class="company-logo">
+                            <img src="https://via.placeholder.com/50" alt="Company Logo">
+                        </div>
+                        <div class="job-info">
+                            <h3>Data Scientist</h3>
+                            <p class="company-name">DataWorks Corp</p>
+                            <div class="job-tags">
+                                <span class="tag hybrid">Hybrid</span>
+                                <span class="tag full-time">Full-time</span>
+                            </div>
+                        </div>
+                        <i class="far fa-heart favorite"></i>
+                    </div>
+                    <div class="job-details">
+                        <p><i class="fas fa-map-marker-alt"></i> Boston, MA</p>
+                        <p><i class="fas fa-money-bill-wave"></i> $130,000 - $160,000</p>
+                        <p><i class="far fa-clock"></i> Posted 1 week ago</p>
+                    </div>
+                    <button class="btn-apply">Apply Now</button>
+                </div>
+
+                <!-- Job Card 4 -->
+                <div class="job-card">
+                    <div class="job-header">
+                        <div class="company-logo">
+                            <img src="https://via.placeholder.com/50" alt="Company Logo">
+                        </div>
+                        <div class="job-info">
+                            <h3>Marketing Manager</h3>
+                            <p class="company-name">GrowthMarketing</p>
+                            <div class="job-tags">
+                                <span class="tag on-site">On-site</span>
+                                <span class="tag full-time">Full-time</span>
+                            </div>
+                        </div>
+                        <i class="far fa-heart favorite"></i>
+                    </div>
+                    <div class="job-details">
+                        <p><i class="fas fa-map-marker-alt"></i> Chicago, IL</p>
+                        <p><i class="fas fa-money-bill-wave"></i> $90,000 - $110,000</p>
+                        <p><i class="far fa-clock"></i> Posted 3 days ago</p>
+                    </div>
+                    <button class="btn-apply">Apply Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="employers">
+        <div class="container">
+            <h2>Why Choose ZewedJobs?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-bullseye"></i>
+                    <h3>Smart Matching</h3>
+                    <p>AI-powered job matching based on your skills and preferences</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Verified Companies</h3>
+                    <p>All employers are thoroughly vetted for authenticity</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-comments"></i>
+                    <h3>Direct Contact</h3>
+                    <p>Communicate directly with hiring managers</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Career Insights</h3>
+                    <p>Get personalized career guidance and insights</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3><i class="fas fa-briefcase"></i> Zewed<span>Jobs</span></h3>
+                    <p>Connecting talented professionals with top companies worldwide since 2024.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Job Seekers</h4>
+                    <ul>
+                        <li><a href="#">Browse Jobs</a></li>
+                        <li><a href="#">Career Advice</a></li>
+                        <li><a href="#">Resume Builder</a></li>
+                        <li><a href="#">Salary Calculator</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Employers</h4>
+                    <ul>
+                        <li><a href="#">Post a Job</a></li>
+                        <li><a href="#">Browse Candidates</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">Employer Resources</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 ZewedJobs. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+</body>
+</html>
