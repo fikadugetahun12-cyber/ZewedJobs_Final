@@ -1,0 +1,14 @@
+import 'package:flutter_localizations/flutter_localizations.dart';
+
+MaterialApp(
+  localizationsDelegates: [
+    GlobalMaterialLocalizations.delegate,
+    GlobalWidgetsLocalizations.delegate,
+  ],
+  supportedLocales: [
+    Locale('am', 'ET'),  // Amharic, Ethiopia
+    Locale('en', 'US'),  // English, USA
+    Locale('or', 'ET'),  // Oromo, Ethiopia
+    Locale('ti', 'ER'),  // Tigrinya, Eritrea
+  ],
+)
