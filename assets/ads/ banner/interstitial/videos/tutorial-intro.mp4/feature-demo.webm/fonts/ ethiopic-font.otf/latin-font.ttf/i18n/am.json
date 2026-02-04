@@ -4,10 +4,27 @@
     "login": "ግባ",
     "logout": "ውጣ",
     "search": "ፈልግ",
-    "loading": "በመጫን ላይ..."
+    "cancel": "ሰርዝ",
+    "save": "አስቀምጥ",
+    "delete": "ሰርዝ",
+    "loading": "በመጫን ላይ...",
+    "error": "ስህተት ተከስቷል"
   },
-  "home": {
-    "title": "ዋና ገጽ",
-    "description": "ወደ መተግበሪያችን እንኳን በደህና መጡ"
+  "navigation": {
+    "home": "ዋና ገጽ",
+    "about": "ስለ እኛ",
+    "contact": "አግኙን",
+    "settings": "ቅንብሮች"
+  },
+  "auth": {
+    "email": "ኢሜይል",
+    "password": "የይለፍ ቃል",
+    "forgot_password": "የይለፍ ቃል ረሳሁ?",
+    "signup": "ተመዝገቢ"
+  },
+  "errors": {
+    "required": "ይህ መስክ አስፈላጊ ነው",
+    "invalid_email": "የማያገለግል ኢሜይል አድራሻ",
+    "password_length": "የይለፍ ቃል ቢያንስ 8 ፊደላት ሊኖረው ይገባል"
   }
 }
