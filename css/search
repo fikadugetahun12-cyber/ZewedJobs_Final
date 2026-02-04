@@ -1,0 +1,352 @@
+// Authentication functions
+class AuthManager {
+    constructor() {
+        this.isLoggedIn = false;
+        this.currentUser = null;
+        this.tokenKey = 'zewedjobs_token';
+        this.userKey = 'zewedjobs_user';
+        
+        this.initialize();
+    }
+    
+    initialize() {
+        this.loadFromStorage();
+        this.setupEventListeners();
+    }
+    
+    loadFromStorage() {
+        const token = localStorage.getItem(this.tokenKey);
+        const user = localStorage.getItem(this.userKey);
+        
+        if (token && user) {
+            this.isLoggedIn = true;
+            this.currentUser = JSON.parse(user);
+            this.updateUI();
+        }
+    }
+    
+    setupEventListeners() {
+        // Login modal
+        document.addEventListener('click', (e) => {
+            if (e.target.matches('[href="#login"]') || e.target.closest('[href="#login"]')) {
+                e.preventDefault();
+                this.showLoginModal();
+            }
+            
+            if (e.target.matches('[href="#signup"]') || e.target.closest('[href="#signup"]')) {
+                e.preventDefault();
+                this.showSignupModal();
+            }
+            
+            if (e.target.matches('[href="#logout"]')) {
+                e.preventDefault();
+                this.logout();
+            }
+        });
+    }
+    
+    async login(email, password) {
+        // Simulate API call
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                // Mock successful login
+                const mockUser = {
+                    id: 1,
+                    email: email,
+                    name: 'John Doe',
+                    type: 'job_seeker',
+                    avatar: 'https://via.placeholder.com/100'
+                };
+                
+                const mockToken = 'mock_jwt_token_' + Date.now();
+                
+                this.isLoggedIn = true;
+                this.currentUser = mockUser;
+                
+                localStorage.setItem(this.tokenKey, mockToken);
+                localStorage.setItem(this.userKey, JSON.stringify(mockUser));
+                
+                this.updateUI();
+                resolve(mockUser);
+                
+                // In production, replace with actual API call:
+                // fetch('/api/login', { method: 'POST', body: JSON.stringify({email, password}) })
+                //   .then(response => response.json())
+                //   .then(data => { ... })
+            }, 1000);
+        });
+    }
+    
+    async signup(userData) {
+        // Simulate API call
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                const mockUser = {
+                    id: 2,
+                    email: userData.email,
+                    name: userData.name,
+                    type: userData.userType || 'job_seeker',
+                    avatar: 'https://via.placeholder.com/100'
+                };
+                
+                const mockToken = 'mock_jwt_token_' + Date.now();
+                
+                this.isLoggedIn = true;
+                this.currentUser = mockUser;
+                
+                localStorage.setItem(this.tokenKey, mockToken);
+                localStorage.setItem(this.userKey, JSON.stringify(mockUser));
+                
+                this.updateUI();
+                resolve(mockUser);
+            }, 1000);
+        });
+    }
+    
+    logout() {
+        this.isLoggedIn = false;
+        this.currentUser = null;
+        
+        localStorage.removeItem(this.tokenKey);
+        localStorage.removeItem(this.userKey);
+        
+        this.updateUI();
+        this.showNotification('Logged out successfully', 'success');
+        
+        // Redirect to home
+        window.location.hash = '';
+    }
+    
+    updateUI() {
+        const loginBtn = document.querySelector('[href="#login"]');
+        const signupBtn = document.querySelector('[href="#signup"]');
+        const navLinks = document.querySelector('.nav-links');
+        
+        if (this.isLoggedIn) {
+            // Remove login/signup buttons
+            if (loginBtn && loginBtn.parentNode) loginBtn.parentNode.remove();
+            if (signupBtn && signupBtn.parentNode) signupBtn.parentNode.remove();
+            
+            // Add user dropdown
+            if (!document.querySelector('.user-dropdown')) {
+                const userHtml = `
+                    <li class="user-dropdown">
+                        <a href="#" class="user-profile">
+                            <img src="${this.currentUser.avatar}" alt="${this.currentUser.name}">
+                            <span>${this.currentUser.name}</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="#dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+                            <a href="#profile"><i class="fas fa-user"></i> My Profile</a>
+                            <a href="#applications"><i class="fas fa-file-alt"></i> My Applications</a>
+                            <a href="#saved-jobs"><i class="fas fa-heart"></i> Saved Jobs</a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        </div>
+                    </li>
+                `;
+                
+                navLinks.insertAdjacentHTML('beforeend', userHtml);
+                
+                // Add dropdown functionality
+                this.setupDropdown();
+            }
+        } else {
+            // Ensure login/signup buttons exist
+            if (!document.querySelector('[href="#login"]')) {
+                const loginHtml = '<li><a href="#login" class="btn-login">Login</a></li>';
+                const signupHtml = '<li><a href="#signup" class="btn-signup">Sign Up</a></li>';
+                navLinks.insertAdjacentHTML('beforeend', loginHtml + signupHtml);
+            }
+            
+            // Remove user dropdown if exists
+            const userDropdown = document.querySelector('.user-dropdown');
+            if (userDropdown) userDropdown.remove();
+        }
+    }
+    
+    setupDropdown() {
+        const profile = document.querySelector('.user-profile');
+        const dropdown = document.querySelector('.dropdown-menu');
+        
+        if (profile && dropdown) {
+            profile.addEventListener('click', (e) => {
+                e.preventDefault();
+                dropdown.classList.toggle('show');
+            });
+            
+            // Close dropdown when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('.user-dropdown')) {
+                    dropdown.classList.remove('show');
+                }
+            });
+        }
+    }
+    
+    showLoginModal() {
+        const modalHtml = `
+            <div class="modal-overlay" id="loginModal">
+                <div class="modal">
+                    <div class="modal-header">
+                        <h3>Login to ZewedJobs</h3>
+                        <button class="modal-close">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="loginForm">
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" required placeholder="Enter your email">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" id="password" required placeholder="Enter your password">
+                                <a href="#forgot-password" class="forgot-password">Forgot password?</a>
+                            </div>
+                            <button type="submit" class="btn-submit">Login</button>
+                        </form>
+                        <div class="modal-footer">
+                            <p>Don't have an account? <a href="#signup" class="switch-form">Sign up</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        document.body.insertAdjacentHTML('beforeend', modalHtml);
+        this.setupModal();
+    }
+    
+    showSignupModal() {
+        const modalHtml = `
+            <div class="modal-overlay" id="signupModal">
+                <div class="modal">
+                    <div class="modal-header">
+                        <h3>Join ZewedJobs</h3>
+                        <button class="modal-close">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="signupForm">
+                            <div class="form-group">
+                                <label for="signupName">Full Name</label>
+                                <input type="text" id="signupName" required placeholder="Enter your full name">
+                            </div>
+                            <div class="form-group">
+                                <label for="signupEmail">Email</label>
+                                <input type="email" id="signupEmail" required placeholder="Enter your email">
+                            </div>
+                            <div class="form-group">
+                                <label for="signupPassword">Password</label>
+                                <input type="password" id="signupPassword" required placeholder="Create a password">
+                            </div>
+                            <div class="form-group">
+                                <label for="userType">I am a:</label>
+                                <select id="userType">
+                                    <option value="job_seeker">Job Seeker</option>
+                                    <option value="employer">Employer</option>
+                                    <option value="recruiter">Recruiter</option>
+                                </select>
+                            </div>
+                            <div class="form-group checkbox">
+                                <input type="checkbox" id="terms" required>
+                                <label for="terms">I agree to the <a href="#terms">Terms of Service</a> and <a href="#privacy">Privacy Policy</a></label>
+                            </div>
+                            <button type="submit" class="btn-submit">Create Account</button>
+                        </form>
+                        <div class="modal-footer">
+                            <p>Already have an account? <a href="#login" class="switch-form">Login</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        document.body.insertAdjacentHTML('beforeend', modalHtml);
+        this.setupModal();
+    }
+    
+    setupModal() {
+        const modal = document.querySelector('.modal-overlay');
+        const closeBtn = modal.querySelector('.modal-close');
+        const form = modal.querySelector('form');
+        
+        // Close modal
+        closeBtn.addEventListener('click', () => this.closeModal());
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) this.closeModal();
+        });
+        
+        // Form submission
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const submitBtn = form.querySelector('.btn-submit');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Processing...';
+            submitBtn.disabled = true;
+            
+            if (form.id === 'loginForm') {
+                const email = form.querySelector('#email').value;
+                const password = form.querySelector('#password').value;
+                
+                try {
+                    await this.login(email, password);
+                    this.closeModal();
+                    this.showNotification('Logged in successfully!', 'success');
+                } catch (error) {
+                    this.showNotification('Login failed. Please try again.', 'error');
+                }
+            } else if (form.id === 'signupForm') {
+                const userData = {
+                    name: form.querySelector('#signupName').value,
+                    email: form.querySelector('#signupEmail').value,
+                    password: form.querySelector('#signupPassword').value,
+                    userType: form.querySelector('#userType').value
+                };
+                
+                try {
+                    await this.signup(userData);
+                    this.closeModal();
+                    this.showNotification('Account created successfully!', 'success');
+                } catch (error) {
+                    this.showNotification('Signup failed. Please try again.', 'error');
+                }
+            }
+            
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+        });
+        
+        // Switch between forms
+        const switchLinks = modal.querySelectorAll('.switch-form');
+        switchLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.closeModal();
+                
+                if (link.textContent.toLowerCase().includes('login')) {
+                    this.showLoginModal();
+                } else {
+                    this.showSignupModal();
+                }
+            });
+        });
+    }
+    
+    closeModal() {
+        const modal = document.querySelector('.modal-overlay');
+        if (modal) {
+            modal.remove();
+        }
+    }
+    
+    showNotification(message, type = 'info') {
+        // Use the notification system from main.js or implement here
+        console.log(`${type}: ${message}`);
+        // You can integrate with the existing notification system
+    }
+}
+
+// Initialize auth manager
+const auth = new AuthManager();
